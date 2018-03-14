@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: ''
+  username: ubuntu
+  password: password
+
+development:
+  <<: *default
+  database: ocapf_database_development
+test:
+  <<: *default
+  database: ocapf_database_test
+
+production:
+  <<: *default
+  database: ocapf_database_production
