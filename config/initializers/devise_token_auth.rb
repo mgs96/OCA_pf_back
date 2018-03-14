@@ -46,3 +46,13 @@ DeviseTokenAuth.setup do |config|
   # do so by enabling this flag. NOTE: This feature is highly experimental!
   # config.enable_standard_devise_support = false
 end
+
+Rails.application.config.to_prepare do
+  Devise::OmniauthCallbacksController.class_eval do
+    # https://stackoverflow.com/questions/39879995/undefined-local-variable-or-method-flash-for-deviseomniauthcallbackscontro
+    def failure
+      set_flash_message! :alert, :failure, kind: OmniAuth::Utils.camelize(failed_strategy.name), reason: failure_message
+      redirect_to after_omniauth_failure_path_for(resource_name)
+    end
+  end
+end
