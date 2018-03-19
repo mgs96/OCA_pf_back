@@ -10,10 +10,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180314144047) do
+ActiveRecord::Schema.define(version: 20180319000453) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "advisories", force: :cascade do |t|
+    t.string "type"
+    t.string "name"
+    t.string "schedule"
+    t.integer "sessions_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "attendances", force: :cascade do |t|
+    t.bigint "student_id"
+    t.bigint "psychologist_id"
+    t.bigint "advisory_id"
+    t.boolean "assisted"
+    t.string "place"
+    t.date "init_date"
+    t.date "end_date"
+    t.string "topic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["advisory_id"], name: "index_attendances_on_advisory_id"
+    t.index ["psychologist_id"], name: "index_attendances_on_psychologist_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -45,4 +70,5 @@ ActiveRecord::Schema.define(version: 20180314144047) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "attendances", "advisories"
 end
