@@ -9,5 +9,7 @@ Rails.application.routes.draw do
       post 'google_auth', to: 'google_login#google_auth'
     end
   end
+
+  get 'scrape_apoyos', to: 'application#scrape_apoyos'
   
 end
