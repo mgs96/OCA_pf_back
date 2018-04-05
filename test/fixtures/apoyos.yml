@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject: MyString
+  nrc: MyString
+  day: MyString
+  hour: MyString
+  place: MyString
+  peer: MyString
+  email: MyString
+  professor: MyString
+  strategy: MyString
+
+two:
+  subject: MyString
+  nrc: MyString
+  day: MyString
+  hour: MyString
+  place: MyString
+  peer: MyString
+  email: MyString
+  professor: MyString
+  strategy: MyString
